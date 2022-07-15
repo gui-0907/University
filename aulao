@@ -1,0 +1,25 @@
+CASOS DE USO: Parte 1 universidade
+
+ATOR PRINCIPAL: Integrado
+
+PRE CONDIÇÕES: Ter acesso aos endpoints da API e também ao paises para ser utilizados como parametro.
+
+POS CONDIÇÕES: salvar as universidades de alguns paises especificos no banco
+
+CENÁRIO PRINCIPAL: 
+1- criar lista de paises
+2- percorrer lista de paises
+3- Conectar no API
+4- Fazer a busca das universidades de cada pais
+5- percorrer a lista
+6- conectar no Banco de Dados
+7- salvar as universidades em uma collection no Banco de Dados
+8- Finalizar fluxo
+
+Fluxo Alternativo 1: falha ao conectar na API
+1- tentar reconectar novamente, caso ocorre tentativa sem sucesso, printar msg de erro
+2- ir para a linha 8
+
+Fluxo Alternativo 2: falha ao salvar produto no banco
+1- tentar reconectar ao banco de dados, caso ocorra tentativa sem sucesso, printar msg de erro
+2- ir para linha 8
