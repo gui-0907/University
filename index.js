@@ -14,7 +14,7 @@ mongoose
     console.log("Conectado ao banco de dados");
     app.listen(3000);
   })
-  .catch((err) => console.log(err));
+  .catch((err) => console.log(`falha ao se conectar com o banco, erro: ${err}`));
 
 async function main() {
   try {
@@ -41,7 +41,12 @@ async function main() {
           country: thisCountry,
         };
 
-        await University.create(jsonUnivesity);
+        try {
+          await University.create(jsonUnivesity);
+        } catch (error) {
+          console.log(`falha ao salvar universidade no banco, erro: ${error}`)
+        }
+        
 
         console.log(`Universidade ${university.name} salva no banco`);
       }
