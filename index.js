@@ -3,7 +3,6 @@
 const axios = require("axios");
 const University = require("./model/University");
 const express = require("express");
-const routes = express.Router();
 const app = express();
 const mongoose = require("mongoose");
 
@@ -17,7 +16,7 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-app.post("/", async (req, res) => {
+async function main() {
   try {
     let listCountry = [
       "argentina",
@@ -35,10 +34,11 @@ app.post("/", async (req, res) => {
 
       let universities = await axios.get(requestUrl);
 
-      for (let university of universities) {
+      for (let university of universities.data) {
+        let name = university.name;
         const jsonUnivesity = {
+          name: name,
           country: thisCountry,
-          university: university.name,
         };
 
         await University.create(jsonUnivesity);
@@ -47,10 +47,8 @@ app.post("/", async (req, res) => {
       }
     }
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: `Erro ao buscar as universidades do país ${country}` });
+    throw error;
   }
-});
+}
 
-module.exports = routes;
+main();
